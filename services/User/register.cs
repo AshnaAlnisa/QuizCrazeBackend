@@ -29,16 +29,13 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
-                    var sq = @"INSERT INTO quizcraze.users (username, name, email, password, address, picture) 
-                               VALUES (@username, @name, @email, @password, @address, @picture)";
+                    var sq = @"INSERT INTO quizcraze.users (username, email, password) 
+                               VALUES (@username, @email, @password)";
                     MySqlParameter[] insertParams = new MySqlParameter[]
                     {
                         new MySqlParameter("@username", rData.addInfo["username"]),
-                        new MySqlParameter("@name", rData.addInfo["name"]),
                         new MySqlParameter("@email", rData.addInfo["email"]),
                         new MySqlParameter("@password", rData.addInfo["password"]),
-                        new MySqlParameter("@address", rData.addInfo["address"]),
-                        new MySqlParameter("@picture", rData.addInfo["picture"])
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 

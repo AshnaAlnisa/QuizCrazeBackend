@@ -22,6 +22,7 @@ ConfigureServices(s=>
     s.AddSingleton<deleteContactUs>();
     s.AddSingleton<viewUsers>();
     s.AddSingleton<deleteUsers>();
+    s.AddSingleton<logout>();
 
 
 s.AddAuthorization();
@@ -58,6 +59,7 @@ app.UseEndpoints(e=>
            var deleteContactUs=  e.ServiceProvider.GetRequiredService<deleteContactUs>();
            var viewUsers=  e.ServiceProvider.GetRequiredService<viewUsers>();
            var deleteUsers=  e.ServiceProvider.GetRequiredService<deleteUsers>();
+           var logout=  e.ServiceProvider.GetRequiredService<logout>();
 
            
 
@@ -151,6 +153,7 @@ app.UseEndpoints(e=>
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await viewUsers.ViewUsers(rData));
             });
+         
         e.MapPost("deleteUsers",
             [AllowAnonymous] async (HttpContext http) =>
             {
@@ -159,7 +162,14 @@ app.UseEndpoints(e=>
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await deleteUsers.DeleteUsers(rData));
             });
-         
+        e.MapPost("logout",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await logout.Logout(rData));
+            });
          
 
 
