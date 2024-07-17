@@ -37,6 +37,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     var token = GenerateToken(email);
                     resData.rData["rMessage"] = "Signin Successful";
                     resData.rData["TOKEN"] = token;
+                    resData.rData["email"] = email;
+                    
                 }
                 else
                 {

@@ -23,6 +23,9 @@ ConfigureServices(s=>
     s.AddSingleton<viewUsers>();
     s.AddSingleton<deleteUsers>();
     s.AddSingleton<logout>();
+    s.AddSingleton<insertQuiz>();
+    s.AddSingleton<updateQuiz>();
+
 
 
 s.AddAuthorization();
@@ -60,6 +63,9 @@ app.UseEndpoints(e=>
            var viewUsers=  e.ServiceProvider.GetRequiredService<viewUsers>();
            var deleteUsers=  e.ServiceProvider.GetRequiredService<deleteUsers>();
            var logout=  e.ServiceProvider.GetRequiredService<logout>();
+           var insertQuiz=  e.ServiceProvider.GetRequiredService<insertQuiz>();
+           var updateQuiz=  e.ServiceProvider.GetRequiredService<updateQuiz>();
+
 
            
 
@@ -169,6 +175,22 @@ app.UseEndpoints(e=>
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await logout.Logout(rData));
+            });
+        e.MapPost("insertQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await insertQuiz.InsertQuiz(rData));
+            });
+        e.MapPost("updateQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await updateQuiz.UpdateQuiz(rData));
             });
          
 
