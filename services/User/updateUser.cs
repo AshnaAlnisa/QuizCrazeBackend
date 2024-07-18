@@ -19,7 +19,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             {
                 // Your update query
                 var query = @"UPDATE quizcraze.users 
-                           SET username = @username, name = @name, email = @email, address = @address
+                           SET username = @username, name = @name, email = @email, address = @address, picture = @picture
                            WHERE id = @Id;";
 
                 // Your parameters
@@ -30,6 +30,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                      new MySqlParameter("@name", rData.addInfo["name"]),
                      new MySqlParameter("@email", rData.addInfo["email"]),
                     new MySqlParameter("@address", rData.addInfo["address"]),
+                    new MySqlParameter("@picture", rData.addInfo["picture"]),
                     
                     
                 };
