@@ -26,7 +26,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     WHERE u.email = @email";
 
                 MySqlParameter[] myParam = new MySqlParameter[] {
-                    new MySqlParameter("@Username", rData.addInfo["id"])
+                    new MySqlParameter("@email", rData.addInfo["email"])
                 };
 
                 var dbData = ds.executeSQL(query, myParam);
