@@ -21,12 +21,12 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             // Your update query for the profile picture
             var query = @"UPDATE quizcraze.users 
                           SET picture = @picture 
-                          WHERE id = @Id;";
+                          WHERE user_id = @user_id;";
 
             // Your parameters
             MySqlParameter[] myParam = new MySqlParameter[]
             {
-                new MySqlParameter("@Id", rData.addInfo["id"]),
+                new MySqlParameter("@user_id", rData.addInfo["user_ids"]),
                 new MySqlParameter("@picture", rData.addInfo["picture"])
             };
 

@@ -20,12 +20,12 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 // Your update query
                 var query = @"UPDATE quizcraze.users 
                            SET username = @username, name = @name, email = @email, address = @address, picture = @picture
-                           WHERE id = @Id;";
+                           WHERE user_id = @user_id;";
 
                 // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@Id", rData.addInfo["id"]),
+                    new MySqlParameter("@user_id", rData.addInfo["user_id"]),
                     new MySqlParameter("@username", rData.addInfo["username"]),
                      new MySqlParameter("@name", rData.addInfo["name"]),
                      new MySqlParameter("@email", rData.addInfo["email"]),

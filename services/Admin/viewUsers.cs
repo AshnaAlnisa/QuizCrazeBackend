@@ -43,7 +43,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         // Construct item object
                         var item = new
                         {
-                            id = rowData[0],
+                            user_id = rowData[0],
                             username = rowData[1],
                             name = rowData[2],
                             email = rowData[3],

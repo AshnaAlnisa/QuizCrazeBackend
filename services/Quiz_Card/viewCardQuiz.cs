@@ -5,10 +5,10 @@ using MySql.Data.MySqlClient;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
-    public class viewQuiz
+    public class viewCardQuiz
     {
         dbServices ds = new dbServices();
-        public async Task<responseData>ViewQuiz(requestData req)
+        public async Task<responseData>ViewCardQuiz(requestData req)
 
  {
             responseData resData = new responseData();
@@ -16,7 +16,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
              try
             {
                 // var query = @"SELECT * FROM detailsdb.destination_card WHERE id=@id";
-                var query = @"SELECT * FROM quizcraze.quizzes";
+                var query = @"SELECT * FROM quizcraze.quiz_card";
                 // Add WHERE clause if filtering by email
                 // query += " WHERE email = @Email";
 
@@ -43,14 +43,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         // Construct item object
                         var item = new
                         {
-                            quiz_id = rowData[0],
-                            quiz_card_id = rowData[1],
-                            question = rowData[2],
-                            option1 = rowData[3],
-                            option2 = rowData[4],
-                            option3 = rowData[5],
-                            option4 = rowData[6],
-                            correct_answer = rowData[7],
+                            quiz_card_id = rowData[0],
+                            title = rowData[1],
+                            no_of_questions = rowData[2],
+                           
                         };
 
                         itemsList.Add(item);

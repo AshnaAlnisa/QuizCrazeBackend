@@ -14,12 +14,12 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
      try
             {
                 // Your delete query
-                var query = @"DELETE FROM quizcraze.quizzes WHERE id = @id;";
+                var query = @"DELETE FROM quizcraze.quizzes WHERE quiz_id = @quiz_id;";
 
                 // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@id", rData.addInfo["id"])
+                    new MySqlParameter("@quiz_id", rData.addInfo["quiz_id"])
                 };
 
                 // Condition to execute the delete query

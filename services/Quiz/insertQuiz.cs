@@ -13,11 +13,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             try
             {
                
-                     var sq=@"insert into quizcraze.quizzes(title,total_questions,question, option1, option2, option3, option4, correct_answer) values(@title,@total_questions,@question, @option1, @option2, @option3, @option4, @correct_answer)";
+                     var sq=@"insert into quizcraze.quizzes(quiz_card_id,question, option1, option2, option3, option4, correct_answer) values(@quiz_card_id,@question, @option1, @option2, @option3, @option4, @correct_answer)";
                      MySqlParameter[] insertParams = new MySqlParameter[]
                     {
-                        new MySqlParameter("@title",rData.addInfo["title"]),
-                        new MySqlParameter("@total_questions",rData.addInfo["total_questions"]),
+                        new MySqlParameter("@quiz_card_id",rData.addInfo["quiz_card_id"]),
                         new MySqlParameter("@question",rData.addInfo["question"]),
                         new MySqlParameter("@option1",rData.addInfo["option1"]),
                         new MySqlParameter("@option2",rData.addInfo["option2"]),

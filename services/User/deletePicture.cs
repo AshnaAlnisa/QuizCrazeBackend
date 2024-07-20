@@ -14,13 +14,13 @@ public class deletePicture
             // Your delete query to remove the profile picture entry
            var query = @"UPDATE quizcraze.users 
               SET picture = NULL 
-              WHERE id = @id;";
+              WHERE user_id = @user_id;";
 
 
             // Your parameters
             MySqlParameter[] myParam = new MySqlParameter[]
             {
-                new MySqlParameter("@id", rData.addInfo["id"])
+                new MySqlParameter("@user_id", rData.addInfo["user_id"])
             };
 
             // Condition to execute the delete query

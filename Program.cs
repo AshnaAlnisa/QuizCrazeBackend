@@ -29,7 +29,13 @@ ConfigureServices(s=>
     s.AddSingleton<deleteQuiz>();
     s.AddSingleton<insertResult>();
     s.AddSingleton<viewResult>();
-    s.AddSingleton<viewResult>();
+    s.AddSingleton<deleteCardQuiz>();
+    s.AddSingleton<insertCardQuiz>();
+    s.AddSingleton<updateCardQuiz>();
+    s.AddSingleton<viewCardQuiz>();
+    s.AddSingleton<viewLeaderboard>();
+    s.AddSingleton<viewQuizPerformance>();
+    s.AddSingleton<viewUserActivity>();
 
 
 
@@ -74,6 +80,13 @@ app.UseEndpoints(e=>
            var deleteQuiz=  e.ServiceProvider.GetRequiredService<deleteQuiz>();
            var insertResult=  e.ServiceProvider.GetRequiredService<insertResult>();
            var viewResult=  e.ServiceProvider.GetRequiredService<viewResult>();
+           var deleteCardQuiz=  e.ServiceProvider.GetRequiredService<deleteCardQuiz>();
+           var insertCardQuiz=  e.ServiceProvider.GetRequiredService<insertCardQuiz>();
+           var updateCardQuiz=  e.ServiceProvider.GetRequiredService<updateCardQuiz>();
+           var viewCardQuiz=  e.ServiceProvider.GetRequiredService<viewCardQuiz>();
+           var viewLeaderboard=  e.ServiceProvider.GetRequiredService<viewLeaderboard>();
+           var viewQuizPerformance=  e.ServiceProvider.GetRequiredService<viewQuizPerformance>();
+           var viewUserActivity=  e.ServiceProvider.GetRequiredService<viewUserActivity>();
 
 
            
@@ -232,6 +245,62 @@ app.UseEndpoints(e=>
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await viewResult.ViewResult(rData));
+            });
+        e.MapPost("deleteCardQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await deleteCardQuiz.DeleteCardQuiz(rData));
+            });
+        e.MapPost("insertCardQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await insertCardQuiz.InsertCardQuiz(rData));
+            });
+        e.MapPost("updateCardQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await updateCardQuiz.UpdateCardQuiz(rData));
+            });
+        e.MapPost("viewCardQuiz",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await viewCardQuiz.ViewCardQuiz(rData));
+            });
+        e.MapPost("viewLeaderboard",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await viewLeaderboard.ViewLeaderboard(rData));
+            });
+        e.MapPost("viewQuizPerformance",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await viewQuizPerformance.ViewQuizPerformance(rData));
+            });
+        e.MapPost("viewUserActivity",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await viewUserActivity.ViewUserActivity(rData));
             });
          
 

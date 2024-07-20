@@ -18,11 +18,15 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 // string desiredUsername = req.addInfo["username"]; // Assuming 'username' is passed in the requestData
 
                 // SQL query to fetch quiz names and scores for a specific user
-                var query = @"
-                    SELECT q.title AS quiz_name, r.score
-                    FROM quizzes q
-                    JOIN result r ON q.id = r.quiz_id
-                    JOIN users u ON r.user_id = u.id
+                var query =  @"
+                    SELECT qc.title AS quiz_title,
+                    r.correct_answer,
+                    r.incorrect_answer,
+                    r.score,
+                    r.result_id
+                    FROM result r
+                    JOIN users u ON r.user_id = u.user_id
+                    JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
                     WHERE u.email = @email";
 
                 MySqlParameter[] myParam = new MySqlParameter[] {
@@ -48,7 +52,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         var item = new
                         {
                             quiz_name = rowData[0],
-                            score = Convert.ToInt32(rowData[1])
+                            correct_answer = Convert.ToInt32(rowData[1]),
+                            incorrect_answer = Convert.ToInt32(rowData[2]),
+                            score = Convert.ToInt32(rowData[3]),
+                            result_id = Convert.ToInt32(rowData[4])
                         };
 
                         itemsList.Add(item);

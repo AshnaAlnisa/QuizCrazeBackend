@@ -4,22 +4,22 @@ using MySql.Data.MySqlClient;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
-    public class deleteUsers
+    public class deleteCardQuiz
     {
         dbServices ds = new dbServices();
-       public async Task<responseData> DeleteUsers(requestData rData)
+       public async Task<responseData> DeleteCardQuiz(requestData rData)
 {
     responseData resData = new responseData();
 
      try
             {
                 // Your delete query
-                var query = @"DELETE FROM quizcraze.users WHERE user_id = @user_id;";
+                var query = @"DELETE FROM quizcraze.quiz_card WHERE quiz_card_id = @quiz_card_id;";
 
                 // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@user_id", rData.addInfo["user_id"])
+                    new MySqlParameter("@quiz_card_id", rData.addInfo["quiz_card_id"])
                 };
 
                 // Condition to execute the delete query

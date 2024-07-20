@@ -5,30 +5,39 @@ using MySql.Data.MySqlClient;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
-    public class viewLeaderboard
+    public class viewQuizPerformance
     {
         dbServices ds = new dbServices();
 
-        public async Task<responseData> ViewLeaderboard(requestData req)
+        public async Task<responseData> ViewQuizPerformance(requestData rData)
         {
             responseData resData = new responseData();
 
             try
             {
-                // SQL query to fetch top 5 users based on quiz scores
+                // Assuming 'id' corresponds to the email of the user to fetch results for
+                
+
                 var query = @"
                     SELECT 
-                    u.username,
-                    u.name,
-                    qc.title AS quiz_title,
-                    r.score
-                    FROM result r
-                    JOIN users u ON r.user_id = u.user_id
-                    JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
-                    ORDER BY r.score DESC
-                    LIMIT 5";
+    qc.quiz_card_id,
+    qc.title AS quiz_title,
+    COUNT(r.quiz_card_id) AS times_played
+FROM 
+    quiz_card qc
+LEFT JOIN 
+    result r ON qc.quiz_card_id = r.quiz_card_id
+GROUP BY 
+    qc.quiz_card_id, qc.title
+ORDER BY 
+    times_played DESC";
 
-                var dbData = ds.executeSQL(query, null); // No parameters needed for this query
+                // MySqlParameter[] myParams = new MySqlParameter[]
+                // {
+                //     new MySqlParameter("@email", rData.addInfo["email"])
+                // };
+
+                var dbData = ds.executeSQL(query, null);
 
                 List<object> itemsList = new List<object>();
 
@@ -48,10 +57,10 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                         // Construct item object
                         var item = new
                         {
-                            username = rowData[0], // Assuming rowData[0] corresponds to the username column
-                            name = rowData[1], // Assuming rowData[1] corresponds to the name column
-                            quiz_title = rowData[2], // Assuming rowData[2] corresponds to the quiz_title column
-                            score = Convert.ToInt32(rowData[3]) // Assuming rowData[3] corresponds to the score column
+                            quiz_id = rowData[0], 
+                            quiz_title = rowData[1],
+                            times_played  = rowData[2], 
+                        
                         };
 
                         itemsList.Add(item);
