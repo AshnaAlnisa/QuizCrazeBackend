@@ -26,7 +26,7 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     JOIN users u ON r.user_id = u.user_id
                     JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
                     ORDER BY r.score DESC
-                    LIMIT 5";
+                    LIMIT 10";
 
                 var dbData = ds.executeSQL(query, null); // No parameters needed for this query
 

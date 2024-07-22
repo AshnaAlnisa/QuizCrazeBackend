@@ -36,6 +36,7 @@ ConfigureServices(s=>
     s.AddSingleton<viewLeaderboard>();
     s.AddSingleton<viewQuizPerformance>();
     s.AddSingleton<viewUserActivity>();
+    s.AddSingleton<viewQuizByQuizCardId>();
 
 
 
@@ -87,6 +88,7 @@ app.UseEndpoints(e=>
            var viewLeaderboard=  e.ServiceProvider.GetRequiredService<viewLeaderboard>();
            var viewQuizPerformance=  e.ServiceProvider.GetRequiredService<viewQuizPerformance>();
            var viewUserActivity=  e.ServiceProvider.GetRequiredService<viewUserActivity>();
+           var viewQuizByQuizCardId=  e.ServiceProvider.GetRequiredService<viewQuizByQuizCardId>();
 
 
            
@@ -301,6 +303,14 @@ app.UseEndpoints(e=>
                 requestData rData = JsonSerializer.Deserialize<requestData>(body);
                 if (rData.eventID == "1001") // update
                     await http.Response.WriteAsJsonAsync(await viewUserActivity.ViewUserActivity(rData));
+            });
+        e.MapPost("viewQuizByQuizCardId",
+            [AllowAnonymous] async (HttpContext http) =>
+            {
+                var body = await new StreamReader(http.Request.Body).ReadToEndAsync();
+                requestData rData = JsonSerializer.Deserialize<requestData>(body);
+                if (rData.eventID == "1001") // update
+                    await http.Response.WriteAsJsonAsync(await viewQuizByQuizCardId.ViewQuizByQuizCardId(rData));
             });
          
 
