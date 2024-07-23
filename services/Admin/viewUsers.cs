@@ -50,6 +50,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                             password = rowData[4],
                             address = rowData[5],
                             picture = rowData[6],
+                            isAdmin = rowData[7],
+
                         };
 
                         itemsList.Add(item);

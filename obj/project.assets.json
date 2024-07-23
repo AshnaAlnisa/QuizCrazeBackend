@@ -2732,32 +2732,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ashna.alnisa\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\NCS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
+      "projectUniqueName": "C:\\Users\\NCS\\Desktop\\22 july\\backend23\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
       "projectName": "COMMON_PROJECT_STRUCTURE_API",
-      "projectPath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
-      "packagesPath": "C:\\Users\\ashna.alnisa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\obj\\",
+      "projectPath": "C:\\Users\\NCS\\Desktop\\22 july\\backend23\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
+      "packagesPath": "C:\\Users\\NCS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\NCS\\Desktop\\22 july\\backend23\\QuizCrazeBackend\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\ashna.alnisa\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\NCS\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2824,7 +2816,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.421\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.423\\RuntimeIdentifierGraph.json"
       }
     }
   },
