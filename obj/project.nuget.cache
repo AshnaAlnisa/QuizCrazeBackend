@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5wv7h8aXi+3uSfTc5Uf/2vcDozUXeTIVUZIQstW2S4v2F9pd0l7qZyDZofCFwhDG4DmpN+VhX4TZOUVoptfciw==",
+  "dgSpecHash": "rIPY2J5D9s2hUf/pQ9xG+MzKkZxsRMjzfVIZhlBREkSYBZNFybYe00XZA04gtlRLSwfYCcJ+gOcehAJdaVcxvA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ashna.alnisa\\Desktop\\QuizCraze\\COMMON_PROJECT_STRUCTURE_API\\COMMON_PROJECT_STRUCTURE_API.csproj",
+  "projectFilePath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",

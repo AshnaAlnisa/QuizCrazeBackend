@@ -1,0 +1,4 @@
+[*.cs]
+
+# IDE0056: Use index operator
+dotnet_diagnostic.IDE0056.severity = none

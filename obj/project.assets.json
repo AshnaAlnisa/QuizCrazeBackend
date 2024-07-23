@@ -2738,11 +2738,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\ashna.alnisa\\Desktop\\QuizCraze\\COMMON_PROJECT_STRUCTURE_API\\COMMON_PROJECT_STRUCTURE_API.csproj",
+      "projectUniqueName": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
       "projectName": "COMMON_PROJECT_STRUCTURE_API",
-      "projectPath": "C:\\Users\\ashna.alnisa\\Desktop\\QuizCraze\\COMMON_PROJECT_STRUCTURE_API\\COMMON_PROJECT_STRUCTURE_API.csproj",
+      "projectPath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
       "packagesPath": "C:\\Users\\ashna.alnisa\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\ashna.alnisa\\Desktop\\QuizCraze\\COMMON_PROJECT_STRUCTURE_API\\obj\\",
+      "outputPath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze\\Backend\\QuizCrazeBackend\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

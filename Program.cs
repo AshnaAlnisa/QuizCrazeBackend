@@ -335,6 +335,8 @@ app.MapGet("/", () => "Hello World!");
 app.Run();
 public record requestData
 {
+    internal IEnumerable<object> questions;
+
     [Required]
     public string eventID { get; set; }
     [Required]

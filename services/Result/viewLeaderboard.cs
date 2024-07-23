@@ -21,7 +21,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     u.username,
                     u.name,
                     qc.title AS quiz_title,
-                    r.score
+                    r.score,
+                    r.quiz_date
                     FROM result r
                     JOIN users u ON r.user_id = u.user_id
                     JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
@@ -51,7 +52,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                             username = rowData[0], // Assuming rowData[0] corresponds to the username column
                             name = rowData[1], // Assuming rowData[1] corresponds to the name column
                             quiz_title = rowData[2], // Assuming rowData[2] corresponds to the quiz_title column
-                            score = Convert.ToInt32(rowData[3]) // Assuming rowData[3] corresponds to the score column
+                            score = Convert.ToInt32(rowData[3]), // Assuming rowData[3] corresponds to the score column
+                            quiz_date = rowData[4]
                         };
 
                         itemsList.Add(item);

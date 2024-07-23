@@ -13,14 +13,15 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             try
             {
                
-                     var sq=@"insert into quizcraze.result(user_id,quiz_card_id,correct_answer, incorrect_answer, score) values(@user_id,@quiz_card_id,@correct_answer, @incorrect_answer, @score)";
+                     var sq=@"insert into quizcraze.result(user_id,quiz_card_id,correct_answer, incorrect_answer, score, quiz_date) values(@user_id,@quiz_card_id,@correct_answer, @incorrect_answer, @score, @quiz_date)";
                      MySqlParameter[] insertParams = new MySqlParameter[]
                     {
                         new MySqlParameter("@user_id",rData.addInfo["user_id"]),
                         new MySqlParameter("@quiz_card_id",rData.addInfo["quiz_card_id"]),
                         new MySqlParameter("@correct_answer",rData.addInfo["correct_answer"]),
                         new MySqlParameter("@incorrect_answer",rData.addInfo["incorrect_answer"]),
-                        new MySqlParameter("@score",rData.addInfo["score"])
+                        new MySqlParameter("@score",rData.addInfo["score"]),
+                        new MySqlParameter("@quiz_date",rData.addInfo["quiz_date"]),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 

@@ -23,7 +23,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     r.correct_answer,
                     r.incorrect_answer,
                     r.score,
-                    r.result_id
+                    r.result_id,
+                    r.quiz_date
                     FROM result r
                     JOIN users u ON r.user_id = u.user_id
                     JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
@@ -55,7 +56,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                             correct_answer = Convert.ToInt32(rowData[1]),
                             incorrect_answer = Convert.ToInt32(rowData[2]),
                             score = Convert.ToInt32(rowData[3]),
-                            result_id = Convert.ToInt32(rowData[4])
+                            result_id = Convert.ToInt32(rowData[4]),
+                            quiz_date = rowData[5]
                         };
 
                         itemsList.Add(item);
