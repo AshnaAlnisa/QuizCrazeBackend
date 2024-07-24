@@ -18,9 +18,16 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
             try
             {
                 // Your update query
-                var query = @"UPDATE quizcraze.quizzes 
-                           SET quiz_card_id = @quiz_card_id, question = @question, option1 = @option1,  option2 = @option2,  option3 = @option3,  option4 = @option4,  correct_answer = @correct_answer
-                           WHERE quiz_id = @quiz_id;";
+                var query = @"
+                    UPDATE quizcraze.quizzes 
+                    SET question = @question, 
+                        option1 = @option1, 
+                        option2 = @option2, 
+                        option3 = @option3, 
+                        option4 = @option4, 
+                        correct_answer = @correct_answer
+                    WHERE quiz_id = @quiz_id 
+                      AND quiz_card_id = @quiz_card_id;";
 
                 // Your parameters
                 MySqlParameter[] myParam = new MySqlParameter[]
