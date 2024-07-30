@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -12,31 +13,60 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
         public async Task<responseData> ChangePassword(requestData rData)
         {
             responseData resData = new responseData();
-             try
+            try
             {
-                var query = @"SELECT * FROM quizcraze.users WHERE email=@email AND password=@CURRENT_PASSWORD";
+                var email = rData.addInfo["email"].ToString();
+                var currentPassword = rData.addInfo["currentPassword"].ToString();
+                var newPassword = rData.addInfo["newPassword"].ToString();
+
+                // Fetch the stored hashed password for the user
+                var query = @"SELECT password FROM quizcraze.users WHERE email=@email";
                 MySqlParameter[] myParam = new MySqlParameter[]
                 {
-                    new MySqlParameter("@email", rData.addInfo["email"]),
-                    new MySqlParameter("@CURRENT_PASSWORD", rData.addInfo["currentPassword"])
+                    new MySqlParameter("@email", email)
                 };
-                var dbData = _dbServices.executeSQL(query, myParam);
                 
-                if (dbData[0].Count() > 0)
+                var dbData = _dbServices.executeSQL(query, myParam);
+
+                if (dbData != null && dbData.Count > 0 && dbData[0].Any())
                 {
-                    var updateQuery = @"UPDATE quizcraze.users SET password=@NEW_PASSWORD WHERE email=@email";
-                    MySqlParameter[] updateParams = new MySqlParameter[]
+                    var firstRow = dbData[0].First();
+                    var storedHashedPassword = Convert.ToString(firstRow[0]); // Extract password as string
+
+                    // Verify the provided current password
+                    bool isCurrentPasswordValid = BCrypt.Net.BCrypt.Verify(currentPassword, storedHashedPassword);
+
+                    if (isCurrentPasswordValid)
                     {
-                        new MySqlParameter("@NEW_PASSWORD", rData.addInfo["newPassword"]),
-                        new MySqlParameter("@email", rData.addInfo["email"])
-                    };
-                    var updateResult = _dbServices.executeSQL(updateQuery, updateParams);
-                    
-                    resData.rData["rMessage"] = "Password Updated Successfully";
+                        // Hash the new password
+                        string hashedNewPassword = BCrypt.Net.BCrypt.HashPassword(newPassword);
+
+                        // Update the password in the database
+                        var updateQuery = @"UPDATE quizcraze.users SET password=@NEW_PASSWORD WHERE email=@email";
+                        MySqlParameter[] updateParams = new MySqlParameter[]
+                        {
+                            new MySqlParameter("@NEW_PASSWORD", hashedNewPassword),
+                            new MySqlParameter("@email", email)
+                        };
+                        var updateResult = _dbServices.ExecuteUpdateSQL(updateQuery, updateParams);
+
+                        if (updateResult > 0)
+                        {
+                            resData.rData["rMessage"] = "Password Updated Successfully";
+                        }
+                        else
+                        {
+                            resData.rData["rMessage"] = "Failed to update password";
+                        }
+                    }
+                    else
+                    {
+                        resData.rData["rMessage"] = "Invalid current password";
+                    }
                 }
                 else
                 {
-                    resData.rData["rMessage"] = "Invalid Email id And Current Password";
+                    resData.rData["rMessage"] = "User not found";
                 }
             }
             catch (Exception ex)
@@ -44,7 +74,6 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 resData.rData["rMessage"] = "An error occurred: " + ex.Message;
             }
             return resData;
-        
         }
     }
 }

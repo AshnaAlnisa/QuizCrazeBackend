@@ -28,7 +28,8 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                     FROM result r
                     JOIN users u ON r.user_id = u.user_id
                     JOIN quiz_card qc ON r.quiz_card_id = qc.quiz_card_id
-                    WHERE u.email = @email";
+                    WHERE u.email = @email
+                     ORDER BY r.quiz_date ASC";
 
                 MySqlParameter[] myParam = new MySqlParameter[] {
                     new MySqlParameter("@email", rData.addInfo["email"])

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using MySql.Data.MySqlClient;
 using System;
-using System.Collections;
+using BCrypt.Net; // Import BCrypt library
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -29,13 +29,16 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
                 }
                 else
                 {
+                    // Hash the password before storing it
+                    string hashedPassword = BCrypt.Net.BCrypt.HashPassword(rData.addInfo["password"].ToString());
+
                     var sq = @"INSERT INTO quizcraze.users (username, email, password) 
                                VALUES (@username, @email, @password)";
                     MySqlParameter[] insertParams = new MySqlParameter[]
                     {
                         new MySqlParameter("@username", rData.addInfo["username"]),
                         new MySqlParameter("@email", rData.addInfo["email"]),
-                        new MySqlParameter("@password", rData.addInfo["password"]),
+                        new MySqlParameter("@password", hashedPassword),
                     };
                     var insertResult = ds.executeSQL(sq, insertParams);
 

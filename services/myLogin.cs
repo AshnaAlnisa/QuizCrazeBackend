@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
 using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.IdentityModel.Tokens;
 using MySql.Data.MySqlClient;
+using BCrypt.Net;
 
 namespace COMMON_PROJECT_STRUCTURE_API.services
 {
@@ -23,43 +25,55 @@ namespace COMMON_PROJECT_STRUCTURE_API.services
         {
             responseData resData = new responseData();
             try
+    {
+        var email = rData.addInfo["email"].ToString();
+        var password = rData.addInfo["password"].ToString();
+
+        // Check if the provided credentials match admin credentials
+        bool isAdmin = (email == DefaultAdminEmail && password == DefaultAdminPassword);
+
+        // Fetch the user record by email
+        var query = @"SELECT password FROM quizcraze.users WHERE email=@email";
+        MySqlParameter[] myParam = new MySqlParameter[]
+        {
+            new MySqlParameter("@email", email),
+        };
+
+        var dbData = ds.executeSQL(query, myParam);
+
+        if (dbData != null && dbData.Count > 0 && dbData[0].Any())
+        {
+            var firstRow = dbData[0].First();
+            var storedHashedPassword = Convert.ToString(firstRow[0]); // Extract password as string
+
+            // Verify the provided password against the stored hashed password
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(password, storedHashedPassword);
+
+            if (isPasswordValid)
             {
-                var email = rData.addInfo["email"].ToString();
-                var password = rData.addInfo["password"].ToString();
-
-                // Check if the provided credentials match admin credentials
-                bool isAdmin = (email == DefaultAdminEmail && password == DefaultAdminPassword);
-
-                var query = @"SELECT * FROM quizcraze.users WHERE email=@email AND password=@password";
-                MySqlParameter[] myParam = new MySqlParameter[]
-                {
-                    new MySqlParameter("@email", email),
-                    new MySqlParameter("@password", password),
-                };
-
-                var dbData = ds.executeSQL(query, myParam);
-                if (dbData[0].Any())
-                {
-                    // Generate JWT token and return it
-                    var token = GenerateToken(email, isAdmin); // Pass isAdmin flag to GenerateToken
-                    resData.rData["rMessage"] = "Signin Successful";
-                    resData.rData["TOKEN"] = token;
-                    resData.rData["email"] = email;
-                    resData.rData["isAdmin"] = isAdmin; // Optionally return isAdmin status
-                }
-                else
-                {
-                    resData.rData["rMessage"] = "Invalid email or password";
-                }
-
+                // Generate JWT token and return it
+                var token = GenerateToken(email, isAdmin); // Pass isAdmin flag to GenerateToken
+                resData.rData["rMessage"] = "Signin Successful";
+                resData.rData["TOKEN"] = token;
+                resData.rData["email"] = email;
+                resData.rData["isAdmin"] = isAdmin; // Optionally return isAdmin status
             }
-            catch (Exception ex)
+            else
             {
-                resData.rData["rMessage"] = "Error: " + ex.Message;
+                resData.rData["rMessage"] = "Invalid email or password";
             }
-            return resData;
         }
-
+        else
+        {
+            resData.rData["rMessage"] = "Invalid email or password";
+        }
+    }
+    catch (Exception ex)
+    {
+        resData.rData["rMessage"] = "Error: " + ex.Message;
+    }
+    return resData;
+}
         private string GenerateToken(string email, bool isAdmin)
         {
             var tokenHandler = new JwtSecurityTokenHandler();

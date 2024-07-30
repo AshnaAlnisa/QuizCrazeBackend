@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "vy+FPXegsacJCfC+1V/SZfAdYxetshaDGwUxc3nqsVDWMAZoWHUn9EOiesXdFc0RJ1LAvHBImHx/GtSf3tdvfg==",
+  "dgSpecHash": "jsEdlBZ6dGm5UpyJIbb7fo/1ygZ3ndC07fwD1rKYtruGdntbZHQC3TXt59iwhemlhTNatcZEItgtwB6YiMTNTg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz Craze 24\\backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
+  "projectFilePath": "C:\\Users\\ashna.alnisa\\Desktop\\Quiz App\\Backend\\QuizCrazeBackend\\COMMON_PROJECT_STRUCTURE_API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\awssdk.core\\3.7.100.14\\awssdk.core.3.7.100.14.nupkg.sha512",
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\awssdk.securitytoken\\3.7.100.14\\awssdk.securitytoken.3.7.100.14.nupkg.sha512",
+    "C:\\Users\\ashna.alnisa\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\bouncycastle\\1.8.9\\bouncycastle.1.8.9.nupkg.sha512",
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\ashna.alnisa\\.nuget\\packages\\dnsclient\\1.6.1\\dnsclient.1.6.1.nupkg.sha512",

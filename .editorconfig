@@ -2,3 +2,6 @@
 
 # IDE0056: Use index operator
 dotnet_diagnostic.IDE0056.severity = none
+
+# CA1305: Specify IFormatProvider
+dotnet_diagnostic.CA1305.severity = none
